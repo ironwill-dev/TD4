@@ -1,18 +1,26 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import Input from './components/Input';
+import Buttons from './components/Buttons';
 
 function App() {
   const [name, setName] = useState('');
   const [greeting, setGreeting] = useState('Welcome to TD3')
   const [showGreeting, setShowGreeting] = useState(false)
 
-  const handleInputChange = (e) => {
-    setName(e.target.value)
-  }
+  // Load saved name when app starts
+  useEffect(() => {
+    const savedName = localStorage.getItem('name')
+    if (savedName) setName(savedName)
+  }, [])
 
-  const handleClick = () => {
-    setShowGreeting(true)
-  }
+  // Save name whenever it changes
+  useEffect(() => {
+    if (name) localStorage.setItem('name', name)
+  }, [name])
+
+  const handleInputChange = (e) => setName(e.target.value)
+  const handleClick = () => setShowGreeting(true)
 
   return (
     <div>
@@ -21,11 +29,18 @@ function App() {
       </header>
 
       <main>
-        <input type='text' value={name} onChange={handleInputChange} placeholder='Enter name here..' />
-        <button onClick={handleClick}>Greet Me !</button>
-        { showGreeting && (
-          <p>{greeting}, {name || 'friend'} !</p>
-        ) }
+        <Input 
+          value={name}          
+          onChange={handleInputChange} 
+          placeholder='Enter name here..' 
+        />
+
+        <Buttons 
+          greeting={greeting} 
+          onClick={handleClick} 
+          showGreeting={showGreeting} 
+          name={name}
+        />
       </main>
 
       <footer>

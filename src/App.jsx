@@ -4,9 +4,10 @@ import Input from './components/Input';
 import Buttons from './components/Buttons';
 
 function App() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState('')
   const [greeting, setGreeting] = useState('Welcome to TD3')
   const [showGreeting, setShowGreeting] = useState(false)
+  const [practice, setPractice] = useState('')
 
   // Load saved name when app starts
   useEffect(() => {
@@ -21,6 +22,12 @@ function App() {
 
   const handleInputChange = (e) => setName(e.target.value)
   const handleClick = () => setShowGreeting(true)
+  const handleReset = () => {
+    setName('')
+    localStorage.removeItem('name')
+    setShowGreeting(false)
+  }
+  const handlePractice = (e) => setPractice(e.target.value)
 
   return (
     <div>
@@ -40,6 +47,7 @@ function App() {
           onClick={handleClick} 
           showGreeting={showGreeting} 
           name={name}
+          onReset={handleReset}
         />
       </main>
 

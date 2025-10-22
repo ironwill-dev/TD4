@@ -2,6 +2,13 @@ import './App.css'
 import { useState, useEffect } from 'react';
 import Input from './components/Input';
 import Buttons from './components/Buttons';
+import Footer from './components/Footer';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import Settings from './pages/Settings';
 
 function App() {
   const [name, setName] = useState('')
@@ -33,27 +40,19 @@ function App() {
     <div>
       <header>
         <h1>IronWill Greeting</h1>
+        <Navbar />
       </header>
 
       <main>
-        <Input 
-          value={name}          
-          onChange={handleInputChange} 
-          placeholder='Enter name here..' 
-        />
-
-        <Buttons 
-          greeting={greeting} 
-          onClick={handleClick} 
-          showGreeting={showGreeting} 
-          name={name}
-          onReset={handleReset}
-        />
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/settings' element={<Settings />} />
+        </Routes>
       </main>
 
-      <footer>
-        &copy; 2025 IronWill. All rights reserved.
-      </footer>
+      <Footer />
     </div>
   )
 }

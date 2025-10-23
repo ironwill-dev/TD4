@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background-color: lavenderblush;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    padding: 1rem;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lavender;
+    box-shadow: 0 4px 16px gray;
+}
+
+main {
+    min-height: calc(100vh - 172px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: wheat;
+    box-shadow: 0 -4px 16px gray;
+}
+
+input {
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+button {
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    color: black;
+    background-color: wheat;
+    cursor: pointer;
+    margin-right: .5rem;
+}
+
+button:nth-last-child(1) {
+    background-color: indianred;
+    color: white;
+}
+
+button:hover {
+    box-shadow: 0 0 10px gray;
+}
+
+button:active {
+    background-color: burlywood;
+}
+
+a {
+    margin-right: 1rem;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    font-weight: bold;
+}

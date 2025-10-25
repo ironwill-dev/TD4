@@ -1,7 +1,5 @@
 import './App.css'
 import { useState, useEffect } from 'react';
-import Input from './components/Input';
-import Buttons from './components/Buttons';
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -12,9 +10,6 @@ import Settings from './pages/Settings';
 
 function App() {
   const [name, setName] = useState('')
-  const [greeting, setGreeting] = useState('Welcome to TD3')
-  const [showGreeting, setShowGreeting] = useState(false)
-  const [practice, setPractice] = useState('')
 
   // Load saved name when app starts
   useEffect(() => {
@@ -26,15 +21,6 @@ function App() {
   useEffect(() => {
     if (name) localStorage.setItem('name', name)
   }, [name])
-
-  const handleInputChange = (e) => setName(e.target.value)
-  const handleClick = () => setShowGreeting(true)
-  const handleReset = () => {
-    setName('')
-    localStorage.removeItem('name')
-    setShowGreeting(false)
-  }
-  const handlePractice = (e) => setPractice(e.target.value)
 
   return (
     <div>

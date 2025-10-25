@@ -1,9 +1,21 @@
 import React from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Settings = () => {
+  const {user, logout} = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
+
   return (
     <div>
-      <h2>Settings Page</h2>
+      <h2>Welcome to the Settings, {user?.name || 'friend'}!</h2>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   )
 }

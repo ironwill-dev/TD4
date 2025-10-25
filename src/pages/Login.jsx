@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [name, setName] = useSate('')
+  const [name, setName] = useState('')
   const {login} = useContext(AuthContext)
   const navigate = useNavigate()
 

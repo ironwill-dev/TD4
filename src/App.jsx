@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
+import UserExplorer from './components/UserExplorer';
 
 function App() {
   const [name, setName] = useState('')
@@ -30,12 +31,13 @@ function App() {
       </header>
 
       <main>
-        <Routes>
+        <UserExplorer />
+        {/* <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/settings' element={<Settings />} />
-        </Routes>
+        </Routes> */}
       </main>
 
       <Footer />

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Ozias",
+        "email": "Kuma@gmail.com",
+        "address": { "city": "Millersville" }
+    },
+    {
+        "id": 2,
+        "name": "Azrael",
+        "email": "Vivaldi@gmail.com",
+        "address": { "city": "Pleasant" }
+    },
+    {
+        "id": 3,
+        "name": "Ikalgo",
+        "email": "Kyros@gmail.com",
+        "address": { "city": "Radio Point" }
+    },
+    {
+        "id": 4,
+        "name": "Bjorn",
+        "email": "Yukio@gmail.com",
+        "address": { "city": "Mutant" }
+    }
+]

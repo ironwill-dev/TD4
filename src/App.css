@@ -49,8 +49,23 @@ button {
 }
 
 button:nth-last-child(1) {
-    background-color: indianred;
-    color: white;
+    background-color: white;
+    color: black;
+}
+
+button:nth-last-child(2) {
+    background-color: white;
+    color: black;
+}
+
+button:nth-last-child(3) {
+    background-color: white;
+    color: black;
+}
+
+button:nth-last-child(4) {
+    background-color: white;
+    color: black;
 }
 
 button:hover {
@@ -58,7 +73,7 @@ button:hover {
 }
 
 button:active {
-    background-color: burlywood;
+    background-color: wheat;
 }
 
 a {
@@ -74,4 +89,8 @@ a:hover {
 
 a:active {
     font-weight: bold;
+}
+
+input {
+    margin-bottom: 1rem;
 }

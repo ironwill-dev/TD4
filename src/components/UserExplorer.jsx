@@ -7,6 +7,9 @@ const UserExplorer = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [city, setCity] = useState('')
 
     const refreshUsers = () => {
         setLoading(true)
@@ -42,6 +45,9 @@ const UserExplorer = () => {
     const addUser = (newUser) => {
         simulateRequest(() => {
             setUsers(prev => [...prev, {id: Date.now(), ...newUser}])
+            setName('')
+            setEmail('')
+            setCity('')
         })
     }
 
@@ -66,6 +72,19 @@ const UserExplorer = () => {
         <div>
             <h2>User Explorer</h2>
             <input placeholder='Search Users...' onChange={(e) => setSearchTerm(e.target.value)} />
+
+            <div>
+                <p>Add User Form:</p>
+                <input placeholder='Type Name...' onChange={(e) => setName(e.target.value)} />
+                <input placeholder='Type Email...' onChange={(e) => setEmail(e.target.value)} />
+                <input placeholder='Type City...' onChange={(e) => setCity(e.target.value)} />
+                <button onClick={() => addUser({
+                    name: name,
+                    email: email,
+                    address: {city: city}
+                })}>Create User</button>
+            </div>
+
             {users
             .filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()))
             .map(user => (

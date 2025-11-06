@@ -20,7 +20,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 footer {
@@ -46,6 +46,7 @@ button {
     background-color: wheat;
     cursor: pointer;
     margin-right: .5rem;
+    margin-bottom: .5rem;
 }
 
 button:nth-last-child(1) {
@@ -92,5 +93,6 @@ a:active {
 }
 
 input {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
 }

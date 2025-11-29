@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.12.2",
@@ -16,8 +17,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.9.4",
-    "zod": "^4.1.13"
+    "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -41,5 +41,6 @@
   "bugs": {
     "url": "https://github.com/ironwill-dev/TD4/issues"
   },
-  "homepage": "https://github.com/ironwill-dev/TD4#readme"
+  "homepage": "https://github.com/ironwill-dev/TD4#readme",
+  "keywords": []
 }

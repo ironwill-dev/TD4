@@ -1,36 +1,18 @@
 // initial setup
-import express from "express";
-import cors from "cors";
-import { books } from "./data/books.js";
-import { z } from "zod";
+import { books } from "../data/books.js";
+import {
+  BookSchema,
+  BookUpdateSchema,
+  IdSchema,
+} from "../schemas/bookSchemas.js";
 
-const app = express();
-const PORT = 5001;
-
-// middleware setup
-app.use(cors());
-app.use(express.json());
-
-// schemas
-const BookSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  book: z.string().min(1, "Book is required"),
-});
-
-const BookUpdateSchema = BookSchema.partial();
-
-const IdSchema = z.object({
-  id: z.string().regex(/^\d+$/, "ID must be a positive number"),
-});
-
-// endpoint setup
-// CRUD - 1. Create
-app.post("/api/books", (req, res) => {
+// CRUD - CREATE
+export function createBook(req, res) {
   // validate data
   const parseResult = BookSchema.safeParse(req.body);
 
   if (!parseResult.success) {
-    return res.json({
+    return res.status(400).json({
       error: "Invalid data",
       details: parseResult.error.flatten(),
     });
@@ -48,23 +30,23 @@ app.post("/api/books", (req, res) => {
   books.push(newBook);
 
   // response
-  res.json(newBook);
-});
+  res.status(200).json(newBook);
+}
 
-// CRUD - 2. Read
-app.get("/api/books", (req, res) => {
-  res.json(books);
-});
+// CRUD - READ
+export function getBook(req, res) {
+  res.status(200).json(books);
+}
 
-// CRUD - 3. Update
-app.patch("/api/books/:id", (req, res) => {
+// CRUD - UPDATE
+export function updateBook(req, res) {
   const { id } = req.params;
 
   // validate data
   const parseResult = BookUpdateSchema.safeParse(req.body);
 
   if (!parseResult.success) {
-    return res.json({
+    return res.status(400).json({
       error: "Invalid update data",
       details: parseResult.error.flatten(),
     });
@@ -75,30 +57,30 @@ app.patch("/api/books/:id", (req, res) => {
 
   // guard clause
   if (bookIndex === -1) {
-    return res.json({
+    return res.status(404).json({
       error: "No books found",
     });
   }
 
   // merge changes
-  const updatedBook = {
+  const updateBook = {
     ...books[bookIndex],
     ...parseResult.data,
   };
 
-  books[bookIndex] = updatedBook;
+  books[bookIndex] = updateBook;
 
   // response
-  res.json(updatedBook);
-});
+  res.status(200).json(updateBook);
+}
 
-// CRUD - 4. Delete
-app.delete("/api/books/:id", (req, res) => {
+// CRUD - DELETE
+export function deleteBook(req, res) {
   // validate data
   const parseResult = IdSchema.safeParse(req.params);
 
   if (!parseResult.success) {
-    return res.json({
+    return res.status(400).json({
       error: "Invalid ID parameter",
       details: parseResult.error.flatten(),
     });
@@ -110,23 +92,18 @@ app.delete("/api/books/:id", (req, res) => {
   const bookIndex = books.findIndex((b) => b.id === Number(id));
 
   if (bookIndex === -1) {
-    return res.json({
+    return res.status(404).json({
       error: "No books found",
     });
   }
 
   // delete data
-  const deletedBook = books[bookIndex];
+  const deleteBook = books[bookIndex];
   books.splice(bookIndex, 1);
 
   // response
-  res.json({
+  res.status(200).json({
     message: "Successfully deleted",
-    removed: deletedBook,
+    removed: deleteBook,
   });
-});
-
-// start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+}
